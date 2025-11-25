@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from "react";
+import { useDebouncedCallback } from "../hooks/useDebounce";
 
 interface AsyncAutocompleteProps {
   value: string;
@@ -11,6 +12,11 @@ interface AsyncAutocompleteProps {
   required?: boolean;
 }
 
+type Suggestion = {
+  id: number;
+  name: string;
+};
+
 export default function AsyncAutocomplete({
   value,
   onChange,
@@ -19,9 +25,7 @@ export default function AsyncAutocomplete({
   label,
   required = false,
 }: AsyncAutocompleteProps) {
-  const [suggestions, setSuggestions] = useState<
-    Array<{ id: number; name: string }>
-  >([]);
+  const [suggestions, setSuggestions] = useState<Suggestion[]>([]);
   const [isOpen, setIsOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const wrapperRef = useRef<HTMLDivElement>(null);
@@ -40,29 +44,28 @@ export default function AsyncAutocomplete({
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
+  const fetchData = useDebouncedCallback(async (val: string) => {
+    if (val?.length < 1) {
+      setSuggestions([]);
+      return;
+    }
+
+    setIsLoading(true);
+    try {
+      const results = await fetchSuggestions(val);
+      setSuggestions(results);
+      setIsOpen(true);
+    } catch (error) {
+      console.error("Failed to fetch suggestions:", error);
+      setSuggestions([]);
+    } finally {
+      setIsLoading(false);
+    }
+  }, 500);
+
   useEffect(() => {
-    const fetchData = async () => {
-      if (value.length < 1) {
-        setSuggestions([]);
-        return;
-      }
-
-      setIsLoading(true);
-      try {
-        const results = await fetchSuggestions(value);
-        setSuggestions(results);
-        setIsOpen(true);
-      } catch (error) {
-        console.error("Failed to fetch suggestions:", error);
-        setSuggestions([]);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-
-    const timeoutId = setTimeout(fetchData, 300);
-    return () => clearTimeout(timeoutId);
-  }, [value, fetchSuggestions]);
+    fetchData(value);
+  }, [fetchData, value]);
 
   const handleSelect = (name: string) => {
     onChange(name);
