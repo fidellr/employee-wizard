@@ -1,0 +1,287 @@
+/* Form Components */
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-label {
+  display: block;
+  font-weight: 600;
+  font-size: 0.875rem;
+  margin-bottom: 0.5rem;
+  color: #374151;
+}
+
+.required {
+  color: #ef4444;
+  margin-left: 0.25rem;
+}
+
+.form-input,
+.form-textarea {
+  width: 100%;
+  padding: 0.625rem 0.875rem;
+  border: 1px solid #d1d5db;
+  border-radius: 0.375rem;
+  font-size: 0.875rem;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.form-input:focus,
+.form-textarea:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.form-input.error {
+  border-color: #ef4444;
+}
+
+.form-input:disabled {
+  background-color: #f3f4f6;
+  cursor: not-allowed;
+}
+
+.form-textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+.error-message {
+  display: block;
+  color: #ef4444;
+  font-size: 0.75rem;
+  margin-top: 0.25rem;
+}
+
+/* Autocomplete */
+.autocomplete-wrapper {
+  position: relative;
+}
+
+.autocomplete-loading {
+  position: absolute;
+  right: 0.875rem;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 0.75rem;
+  color: #6b7280;
+}
+
+.autocomplete-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: white;
+  border: 1px solid #d1d5db;
+  border-radius: 0.375rem;
+  margin-top: 0.25rem;
+  max-height: 200px;
+  overflow-y: auto;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  z-index: 10;
+  list-style: none;
+  padding: 0;
+}
+
+.autocomplete-item {
+  padding: 0.625rem 0.875rem;
+  cursor: pointer;
+  transition: background-color 0.15s;
+}
+
+.autocomplete-item:hover {
+  background-color: #f3f4f6;
+}
+
+/* Photo Upload */
+.photo-upload {
+  margin-top: 0.5rem;
+}
+
+.photo-upload-area {
+  border: 2px dashed #d1d5db;
+  border-radius: 0.5rem;
+  padding: 2rem;
+  text-align: center;
+  transition: border-color 0.2s;
+}
+
+.photo-upload-area:hover {
+  border-color: #3b82f6;
+}
+
+.photo-input {
+  display: none;
+}
+
+.photo-upload-label {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  color: #6b7280;
+}
+
+.photo-upload-icon {
+  font-size: 2rem;
+}
+
+.photo-preview {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.photo-preview-image {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 0.5rem;
+  border: 1px solid #d1d5db;
+}
+
+.photo-remove-btn {
+  padding: 0.5rem 1rem;
+  background-color: #ef4444;
+  color: white;
+  border: none;
+  border-radius: 0.375rem;
+  cursor: pointer;
+  font-size: 0.875rem;
+  transition: background-color 0.2s;
+}
+
+.photo-remove-btn:hover {
+  background-color: #dc2626;
+}
+
+/* Progress Bar */
+.progress-container {
+  margin: 1.5rem 0;
+}
+
+.progress-bar {
+  width: 100%;
+  height: 8px;
+  background-color: #e5e7eb;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.progress-bar-fill {
+  height: 100%;
+  background-color: #3b82f6;
+  transition: width 0.3s ease;
+}
+
+.progress-message {
+  margin-top: 0.5rem;
+  font-size: 0.875rem;
+  color: #6b7280;
+  text-align: center;
+}
+
+/* Role Selector */
+.role-selector {
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.role-buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin-top: 0.75rem;
+}
+
+.role-button {
+  padding: 0.75rem 2rem;
+  border: 2px solid #d1d5db;
+  background-color: white;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.875rem;
+  transition: all 0.2s;
+}
+
+.role-button:hover {
+  border-color: #3b82f6;
+  color: #3b82f6;
+}
+
+.role-button.active {
+  background-color: #3b82f6;
+  border-color: #3b82f6;
+  color: white;
+}
+
+/* Buttons */
+.btn {
+  padding: 0.625rem 1.5rem;
+  border: none;
+  border-radius: 0.375rem;
+  font-weight: 600;
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-primary {
+  background-color: #3b82f6;
+  color: white;
+}
+
+.btn-primary:hover:not(:disabled) {
+  background-color: #2563eb;
+}
+
+.btn-primary:disabled {
+  background-color: #9ca3af;
+  cursor: not-allowed;
+}
+
+.btn-secondary {
+  background-color: #6b7280;
+  color: white;
+}
+
+.btn-secondary:hover:not(:disabled) {
+  background-color: #4b5563;
+}
+
+.btn-clear-draft {
+  padding: 0.5rem 1rem;
+  background-color: transparent;
+  border: 1px solid #d1d5db;
+  border-radius: 0.375rem;
+  cursor: pointer;
+  font-size: 0.875rem;
+  color: #6b7280;
+  transition: all 0.2s;
+}
+
+.btn-clear-draft:hover {
+  border-color: #ef4444;
+  color: #ef4444;
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  .role-buttons {
+    flex-direction: column;
+  }
+
+  .role-button {
+    width: 100%;
+  }
+
+  .photo-preview-image {
+    width: 150px;
+    height: 150px;
+  }
+}

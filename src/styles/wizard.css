@@ -1,0 +1,186 @@
+/* Page Container */
+.page-container {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: 2rem 1rem;
+}
+
+/* Wizard Container */
+.wizard-container {
+  max-width: 600px;
+  margin: 0 auto;
+  background: white;
+  border-radius: 1rem;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+  padding: 2rem;
+}
+
+.wizard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.wizard-main-title {
+  font-size: 1.875rem;
+  font-weight: 700;
+  color: #111827;
+}
+
+/* Step Indicator */
+.wizard-steps {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 2rem;
+  padding: 1.5rem 0;
+}
+
+.step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.step-number {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #e5e7eb;
+  color: #6b7280;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  transition: all 0.3s;
+}
+
+.step.active .step-number {
+  background-color: #3b82f6;
+  color: white;
+}
+
+.step.completed .step-number {
+  background-color: #10b981;
+  color: white;
+}
+
+.step-label {
+  font-size: 0.875rem;
+  color: #6b7280;
+  font-weight: 500;
+}
+
+.step.active .step-label {
+  color: #3b82f6;
+  font-weight: 600;
+}
+
+.step-divider {
+  width: 80px;
+  height: 2px;
+  background-color: #e5e7eb;
+  margin: 0 1rem;
+}
+
+/* Wizard Content */
+.wizard-content {
+  margin-top: 2rem;
+}
+
+.wizard-form {
+  width: 100%;
+}
+
+.wizard-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #111827;
+  margin-bottom: 1.5rem;
+}
+
+/* Wizard Actions */
+.wizard-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: flex-end;
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid #e5e7eb;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .wizard-container {
+    padding: 1.5rem;
+  }
+
+  .wizard-main-title {
+    font-size: 1.5rem;
+  }
+
+  .wizard-header {
+    flex-direction: column;
+    gap: 1rem;
+    align-items: flex-start;
+  }
+
+  .wizard-steps {
+    padding: 1rem 0;
+  }
+
+  .step-divider {
+    width: 40px;
+    margin: 0 0.5rem;
+  }
+
+  .step-number {
+    width: 32px;
+    height: 32px;
+    font-size: 0.875rem;
+  }
+
+  .step-label {
+    font-size: 0.75rem;
+  }
+
+  .wizard-actions {
+    flex-direction: column-reverse;
+  }
+
+  .wizard-actions .btn {
+    width: 100%;
+  }
+}
+
+@media (max-width: 360px) {
+  .page-container {
+    padding: 1rem 0.5rem;
+  }
+
+  .wizard-container {
+    padding: 1rem;
+    border-radius: 0.5rem;
+  }
+
+  .wizard-main-title {
+    font-size: 1.25rem;
+  }
+
+  .step-label {
+    display: none;
+  }
+}
+
+@media (min-width: 1440px) {
+  .wizard-container {
+    max-width: 700px;
+    padding: 3rem;
+  }
+
+  .wizard-main-title {
+    font-size: 2.25rem;
+  }
+}
