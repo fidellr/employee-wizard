@@ -1,8 +1,9 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import AsyncAutocomplete from "./AsyncAutocomplete";
 import { api } from "../lib/api";
 import { generateEmployeeId } from "../utils/employeeId";
 import type { BasicInfo } from "../types/Employee";
+
 import "../styles/wizard.css";
 
 interface Step1Props {
@@ -15,19 +16,37 @@ export default function Step1BasicInfo({ data, onChange, onNext }: Step1Props) {
   const [formData, setFormData] = useState<Partial<BasicInfo>>(data);
   const [emailError, setEmailError] = useState("");
 
+  const validateEmail = (email: string): boolean => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  };
+  const isValid = useMemo(
+    () =>
+      formData.fullName &&
+      formData.email &&
+      validateEmail(formData.email) &&
+      formData.department &&
+      formData.role &&
+      formData.employeeId,
+    [
+      formData.department,
+      formData.email,
+      formData.employeeId,
+      formData.fullName,
+      formData.role,
+    ]
+  );
+
   useEffect(() => {
     setFormData(data);
   }, [data]);
 
-  const handleChange = (field: keyof BasicInfo, value: string) => {
-    const updated = { ...formData, [field]: value };
-    setFormData(updated);
-    onChange(updated);
-  };
+  useEffect(() => {
+    onChange(formData);
+  }, [formData, onChange]);
 
-  const validateEmail = (email: string): boolean => {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return emailRegex.test(email);
+  const handleChange = (field: keyof BasicInfo, value: string) => {
+    setFormData((prevData) => ({ ...prevData, [field]: value }));
   };
 
   const handleEmailChange = (email: string) => {
@@ -51,14 +70,6 @@ export default function Step1BasicInfo({ data, onChange, onNext }: Step1Props) {
       console.error("Failed to generate employee ID:", error);
     }
   };
-
-  const isValid =
-    formData.fullName &&
-    formData.email &&
-    validateEmail(formData.email) &&
-    formData.department &&
-    formData.role &&
-    formData.employeeId;
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();

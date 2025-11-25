@@ -1,9 +1,10 @@
 import { useState, useEffect, useCallback, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import Step1BasicInfo from "./Step1BasicInfo";
+import Step2Details from "./Step2Details";
 import { draftStorage } from "../lib/draftStorage";
 import { api } from "../lib/api";
-import type { Role, BasicInfo, Details, DraftData } from "../lib/types";
+import type { Role, BasicInfo, Details, DraftData } from "../types/Employee";
 import "../styles/wizard.css";
 
 interface WizardFormProps {
@@ -33,7 +34,7 @@ export default function WizardForm({ role }: WizardFormProps) {
       details,
     };
     draftStorage.save(role, draftData);
-  }, [role, basicInfo, details]);
+  }, [basicInfo, details, role]);
 
   useEffect(() => {
     if (autoSaveTimerRef.current) {
@@ -53,9 +54,9 @@ export default function WizardForm({ role }: WizardFormProps) {
     };
   }, [saveDraft]);
 
-  const handleBasicInfoChange = (data: Partial<BasicInfo>) => {
+  const handleBasicInfoChange = useCallback((data: Partial<BasicInfo>) => {
     setBasicInfo(data);
-  };
+  }, []);
 
   const handleDetailsChange = (data: Partial<Details>) => {
     setDetails(data);
@@ -142,6 +143,17 @@ export default function WizardForm({ role }: WizardFormProps) {
             data={basicInfo}
             onChange={handleBasicInfoChange}
             onNext={handleNext}
+          />
+        )}
+
+        {currentStep === 2 && (
+          <Step2Details
+            data={details}
+            basicInfo={basicInfo}
+            role={role}
+            onChange={handleDetailsChange}
+            onSubmit={handleSubmit}
+            onBack={role === "admin" ? handleBack : undefined}
           />
         )}
       </div>
