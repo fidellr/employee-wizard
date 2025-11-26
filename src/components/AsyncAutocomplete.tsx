@@ -54,7 +54,9 @@ export default function AsyncAutocomplete({
     try {
       const results = await fetchSuggestions(val);
       setSuggestions(results);
-      setIsOpen(true);
+      if (!results.some((item) => item.name === val)) {
+        setIsOpen(true);
+      }
     } catch (error) {
       console.error("Failed to fetch suggestions:", error);
       setSuggestions([]);
