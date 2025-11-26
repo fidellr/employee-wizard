@@ -1,7 +1,7 @@
 import type { Department, Location, BasicInfo, Details } from "../types/Employee";
 
-const API_BASE_1 = "http://localhost:4001";
-const API_BASE_2 = "http://localhost:4002";
+const API_BASE_1 = import.meta.env.VITE_API_1;
+const API_BASE_2 = import.meta.env.VITE_API_1;
 
 export const api = {
   // Step 1 API
