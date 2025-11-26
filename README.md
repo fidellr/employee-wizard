@@ -2,6 +2,7 @@
 
 A role-based 2-step wizard form application built with React and TypeScript, featuring async autocomplete, file upload, auto-save, and employee management.
 
+#### DEMO: https://employee-wizard.netlify.app/wizard
 ## ✨ Features
 
 - **Role-based Access Control**: Admin users access both steps, Ops users only Step 2
