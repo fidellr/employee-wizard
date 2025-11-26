@@ -57,7 +57,6 @@ export default function Step2Details({
         employeeId: basicInfo?.employeeId,
       };
 
-      // Prepare basic info for admin role
       const basicInfoData =
         role === "admin" && basicInfo
           ? {
@@ -68,14 +67,16 @@ export default function Step2Details({
               employeeId: basicInfo.employeeId!,
             }
           : null;
+      setProgress(50);
 
       await onSubmit(basicInfoData, detailsData);
+      setProgress(100);
     } catch (error) {
       console.error("Submit failed:", error);
       alert("Failed to submit form. Please try again.");
     } finally {
       setIsSubmitting(false);
-      setProgress(0);
+      setProgress(0)
       setProgressMessage("");
     }
   };
