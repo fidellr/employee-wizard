@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import { useDebouncedCallback } from "../hooks/useDebounce";
 
 interface AsyncAutocompleteProps {
-  value: string;
+  value?: string;
   onChange: (value: string) => void;
   fetchSuggestions: (
     query: string
@@ -66,7 +66,7 @@ export default function AsyncAutocomplete({
   }, 500);
 
   useEffect(() => {
-    fetchData(value);
+    if (value) fetchData(value);
   }, [fetchData, value]);
 
   const handleSelect = (name: string) => {
