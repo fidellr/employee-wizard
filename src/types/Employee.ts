@@ -27,6 +27,18 @@ export interface Details {
   employeeId?: string; // For merging
 }
 
+export interface Employee {
+  fullName: string;
+  email: string;
+  department: string;
+  role: string;
+  employeeId: string;
+  photo: string;
+  employmentType: string;
+  officeLocation: string;
+  notes: string;
+}
+
 export interface DraftData {
   basicInfo?: Partial<BasicInfo>;
   details?: Partial<Details>;
