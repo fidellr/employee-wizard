@@ -1,0 +1,27 @@
+version: "3.8"
+services:
+  react-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3000:80"
+    restart: unless-stopped
+
+  json-server-step1:
+    image: vimagick/json-server
+    ports:
+      - "4001:80"
+    volumes:
+      - ./mock-data/db_step1.json:/data/db.json
+    command: -H 0.0.0.0 -p 80 -w /data/db.json
+    restart: unless-stopped
+
+  json-server-step2:
+    image: vimagick/json-server
+    ports:
+      - "4002:80"
+    volumes:
+      - ./mock-data/db_step2.json:/data/db.json
+    command: -H 0.0.0.0 -p 80 -w /data/db.json
+    restart: unless-stopped
